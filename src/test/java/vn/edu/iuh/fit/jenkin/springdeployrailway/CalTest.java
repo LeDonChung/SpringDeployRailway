@@ -15,8 +15,4 @@ public class CalTest {
         assert calculator.add(1, 2) == 3;
     }
 
-    @Test
-    public void testAdd2() {
-        assert calculator.add(1, 2) == 2;
-    }
 }
