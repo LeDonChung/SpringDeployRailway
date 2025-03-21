@@ -3,8 +3,6 @@ pipeline {
 
     environment {
         DOCKER_IMAGE_NAME = 'spring-app'
-        RAILWAY_PROJECT = 'believable-vitality'
-        RAILWAY_API_KEY = credentials('railway-api-key')
     }
 
     stages {
@@ -40,14 +38,10 @@ pipeline {
             }
         }
 
-        stage('Deploy to Railway') {
+        stage('Build Docker Image') {
             steps {
                 script {
-                    echo 'Deploying to Railway...'
-                    sh """
-                    railway login --apiKey $RAILWAY_API_KEY
-                    railway up --project $RAILWAY_PROJECT
-                    """
+                    sh 'docker build -t $DOCKER_IMAGE_NAME .'
                 }
             }
         }
